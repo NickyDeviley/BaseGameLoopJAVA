@@ -7,22 +7,25 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-public class Panel extends JPanel {
+import Principal.Config;
+import Principal.Managers.EntityManager;
 
-	// Constantes
-	private final int SCREENWIDTH = 1280;
-	private final int SCREENHEIGHT = 720;
+public class Panel extends JPanel {
+		
+// OBJETOS
+	private EntityManager entityM;
 	
-	public Panel() {
+	public Panel(EntityManager entityM) {
+		
+		// Referenciando o EntityManager
+		this.entityM = entityM;
 		
 		// Gerando a janela
-		this.setScreenSize();				// Método que determina o tamanho da janela
-		this.setBackground(Color.BLACK);	// Método que pinta o fundo de preto
-		this.setFocusable(true);			// Método que torna a janela o "alvo" das entradas do jogador
-		this.setDoubleBuffered(true);		// Método que impede a janela de piscar
+		this.setScreenSize(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);	// Método que determina o tamanho da janela
+		this.setBackground(Color.BLACK);				// Método que pinta o fundo de preto
+		this.setFocusable(true);						// Método que torna a janela o "alvo" das entradas do jogador
+		this.setDoubleBuffered(true);					// Método que impede a janela de piscar
 		//this.addKeyListener(null);
-		
-		//this.setVisible(true);				// Método que torna a janela visível
 		
 	}
 	
@@ -33,14 +36,21 @@ public class Panel extends JPanel {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		
+		/* CHAME OS MÉTODOS DE DESENHO ABAIXO DESTE COMENTARIO */
+		
+		this.entityM.draw(g2);		// Desenhando as entidades
+		
+		/* CHAME OS MÉTODOS DE DESENHO ACIMA DESTE COMENTARIO */
+		
 		g2.dispose();
 	}
 	
 	// Método que determina os tamanhos da janela
-	private void setScreenSize() {
-		Dimension size = new Dimension(this.SCREENWIDTH, this.SCREENHEIGHT);
+	private void setScreenSize(int screenW, int screenH) {
+		Dimension size = new Dimension(screenW, screenH);
 		this.setMinimumSize(size);
 		this.setPreferredSize(size);
 		this.setMaximumSize(size);
 	}
+	
 }

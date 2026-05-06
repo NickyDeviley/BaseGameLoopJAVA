@@ -1,31 +1,48 @@
 package Principal;
 
+import Principal.Managers.EntityManager;
 import Screen.Panel;
 import Screen.Screen;
+import Util.Input.AssetInput;
+import Util.Input.KeyboardInput;
 
 public final class GameLoop implements Runnable {
 
 // CONSTANTES
-
-	// FPS & UPS
 	private final byte FPS = 60;
 	private final byte UPS = 120;
 	private final double NANOSSEGUNDOS_EM_SEGUNDOS = 1000000000.0;
 
 // OBJETOS
 	private Thread gameThread;
+	private AssetInput assetInput;
+	private KeyboardInput keyboardI;
+	
+	// Screen
 	private Screen gameJanela;
 	private Panel gamePainel;
+	
+	// Managers
+	private EntityManager entityM;
 
 // VARIÁVEIS
 	private boolean running = false;
-	private String nameOfTheGame = "Nome experimental";
 	
 	// Construtor
 	public GameLoop() {
+
+		// Instanciando Objetos
+		this.keyboardI = new KeyboardInput();
 		
-		this.gamePainel = new Panel();
-		this.gameJanela = new Screen(nameOfTheGame, this.gamePainel);
+		// Instanciando os objetos Managers
+		assetInput = new AssetInput();
+		entityM = new EntityManager(assetInput, keyboardI);
+		
+		// Criando os objetos janela
+		this.gamePainel = new Panel(this.entityM);
+		this.gameJanela = new Screen(Config.nomeJogo, this.gamePainel);
+		
+
 		this.startGameLoop();
 		
 	}
@@ -71,33 +88,43 @@ public final class GameLoop implements Runnable {
 			
 			// Verifica se o jogo pode atualizar
 			if (timePassedUpdate >= deltaTimeUPS) {
-				//painel.update();						// Chamando método que atualiza o jogo
+				//gamePainel.update();						// Chamando método que atualiza o jogo
 				lastUpdate += deltaTimeUPS;				// Atualiza o tempo do último Update somando o delta
 				qtdUpdates++;							// Soma 1 ao contador para verificar se ocorre 120 atualizações por segundo
 			}
 			
 			// Verifica se o frame pode atualizar
 			if (timePassedFrame >= deltaTimeFPS) {
-				//painel.repaint();						// Método que atualiza o frame
+				gamePainel.repaint();					// Método que atualiza o frame
 				lastFrame += deltaTimeFPS;				// Atualiaz o tempo do último frame somando o delta
 				qtdFrames++;							// Soma 1 ao contador para verificar se ocorre 60 atualizações por segundo
 			}
 			
 			// Se o jogo não atualiza o FPS ou UPS
 			// Calcula o tempo que falta para atualizar os dois
+			
+			/*
 			long tempoRestanteFrame = (long) ((deltaTimeFPS - timePassedFrame) / 1000000);
 			long tempoRestanteUpdate = (long) ((deltaTimeUPS - timePassedUpdate) / 1000000);
 				
 			// Encontra o menor valor entre os dois
 			long tempoParaDormir = Math.min(tempoRestanteFrame, tempoRestanteUpdate);
+			*/
 			
-			// Se o valor mais baixo for maior que zero
+			// Mudaça para o GameLoop, agora ele calcula qual o menor
+			// tempo até a próxima atualização
+			long nextEvent = (long) Math.min(lastUpdate + deltaTimeUPS, lastFrame + deltaTimeUPS);
+			long timeRemaining = nextEvent - System.nanoTime();
+			
+			// Se o valor for maior que 2ms 
 			// A thread "descansa" pelo tempo restante
-			if (tempoParaDormir > 0) {
+			if (timeRemaining >= 2000000 /* tempoParaDormir > 0 */) {
 				try {
-					Thread.sleep(tempoParaDormir);
+					Thread.sleep(timeRemaining / 1000000 - 1);
 				}
 				catch (InterruptedException e) {
+					
+					System.out.println("A thread não conseguiu dormir!" + e.getMessage());
 					e.printStackTrace();
 				}
 			}

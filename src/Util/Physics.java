@@ -1,12 +1,12 @@
 package Util;
 
-public class Fisica {
+public class Physics {
 	/**
 	 	Classe que une toda a física do jogo
 	*/
 	
 	// Construtor padrão
-	public Fisica() {}
+	public Physics() {}
 	
 	public void Update() {
 		
