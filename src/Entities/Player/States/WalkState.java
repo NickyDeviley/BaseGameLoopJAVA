@@ -6,32 +6,31 @@ import Entities.Behaviors.Command;
 import Entities.Behaviors.PlayerState;
 import Entities.Player.Player;
 
-public class IdleState implements PlayerState {
+public class WalkState implements PlayerState {
 
-	public static final IdleState idleS = new IdleState();
+	public static final WalkState walkS = new WalkState();
 	
-	private IdleState() {}
+	private WalkState() {}
 	
 	@Override
 	public void handleCommands(Player player, List<Command> commands) {
-		// Idle Permite qualquer comando
+		
 		for (Command command : commands) {
 			command.execute(player);
+		}
+		
+		if (commands.isEmpty()) {
+			player.setState(IdleState.idleS);
 		}
 		
 	}
 
 	@Override
-	public void update(Player player) {
-		
-		// Se nenhum comando foi dado no frame anterior, permanece Idle.
-		// A transição para outros estados é feita pelos próprios commands.
-		
-	}
+	public void update(Player player) {}
 
 	@Override
 	public States getStateName() {
-		return States.IDLE;
+		return States.WALK;
 	}
 
 }

@@ -1,11 +1,13 @@
 package Entities.Behaviors;
 
+import java.util.List;
+
 import Entities.Player.Player;
-import Util.Input.KeyboardInput;
+import Entities.Player.States.States;
 
 public interface PlayerState {
 
-	void handleInput(Player player, KeyboardInput keyH);
+	void handleCommands(Player player, List<Command> commands);
 	void update(Player player);
-	
+	States getStateName();
 }

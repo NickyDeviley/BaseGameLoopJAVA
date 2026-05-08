@@ -18,16 +18,21 @@ public class EntityManager {
 	
 	
 	// Construtor
-	public EntityManager(AssetInput assetInput, KeyboardInput keyboardI) {
+	public EntityManager(KeyboardInput keyboardI) {
 		
 		this.screenWidth = Config.SCREEN_WIDTH;
 		this.screenHeight = Config.SCREEN_HEIGHT;
 		
-		this.Jogador = new Player(Config.nomeJogo, this.screenWidth, this.screenHeight, assetInput, keyboardI);
+		this.Jogador = new Player(Config.nomeJogo, this.screenWidth, this.screenHeight, keyboardI);
 		
 	}
 	
-	public void updateLogic() {}
+	// Calcula a lógica de todas as entidades
+	public void updateLogic() {
+		
+		this.Jogador.update();
+		
+	}
 	
 	public void draw(Graphics2D g2) {
 		

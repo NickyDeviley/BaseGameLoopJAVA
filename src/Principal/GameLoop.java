@@ -1,10 +1,13 @@
 package Principal;
 
+import Principal.Managers.AssetManager;
 import Principal.Managers.EntityManager;
+import Principal.Managers.WorldManager;
 import Screen.Panel;
 import Screen.Screen;
 import Util.Input.AssetInput;
 import Util.Input.KeyboardInput;
+import Util.Input.WorldInput;
 
 public final class GameLoop implements Runnable {
 
@@ -15,8 +18,11 @@ public final class GameLoop implements Runnable {
 
 // OBJETOS
 	private Thread gameThread;
-	private AssetInput assetInput;
+	
+	// Input
+	private AssetInput assetI;
 	private KeyboardInput keyboardI;
+	private WorldInput worldI;
 	
 	// Screen
 	private Screen gameJanela;
@@ -24,6 +30,8 @@ public final class GameLoop implements Runnable {
 	
 	// Managers
 	private EntityManager entityM;
+	private AssetManager assetM;
+	private WorldManager worldM;
 
 // VARIÁVEIS
 	private boolean running = false;
@@ -34,12 +42,17 @@ public final class GameLoop implements Runnable {
 		// Instanciando Objetos
 		this.keyboardI = new KeyboardInput();
 		
-		// Instanciando os objetos Managers
-		assetInput = new AssetInput();
-		entityM = new EntityManager(assetInput, keyboardI);
+		// Instanciando os objetos Input
+		this.assetI = new AssetInput();
+		this.worldI = new WorldInput();
+		
+		// Instanciando os objetos Manager
+		this.entityM = new EntityManager(this.keyboardI);
+		this.assetM = new AssetManager();
+		this.worldM = new WorldManager(this.worldI, this.assetM);
 		
 		// Criando os objetos janela
-		this.gamePainel = new Panel(this.entityM);
+		this.gamePainel = new Panel(this.entityM, this.worldM, this.keyboardI);
 		this.gameJanela = new Screen(Config.nomeJogo, this.gamePainel);
 		
 
@@ -88,7 +101,7 @@ public final class GameLoop implements Runnable {
 			
 			// Verifica se o jogo pode atualizar
 			if (timePassedUpdate >= deltaTimeUPS) {
-				//gamePainel.update();						// Chamando método que atualiza o jogo
+				this.update();						// Chamando método que atualiza o jogo
 				lastUpdate += deltaTimeUPS;				// Atualiza o tempo do último Update somando o delta
 				qtdUpdates++;							// Soma 1 ao contador para verificar se ocorre 120 atualizações por segundo
 			}
@@ -100,17 +113,6 @@ public final class GameLoop implements Runnable {
 				qtdFrames++;							// Soma 1 ao contador para verificar se ocorre 60 atualizações por segundo
 			}
 			
-			// Se o jogo não atualiza o FPS ou UPS
-			// Calcula o tempo que falta para atualizar os dois
-			
-			/*
-			long tempoRestanteFrame = (long) ((deltaTimeFPS - timePassedFrame) / 1000000);
-			long tempoRestanteUpdate = (long) ((deltaTimeUPS - timePassedUpdate) / 1000000);
-				
-			// Encontra o menor valor entre os dois
-			long tempoParaDormir = Math.min(tempoRestanteFrame, tempoRestanteUpdate);
-			*/
-			
 			// Mudaça para o GameLoop, agora ele calcula qual o menor
 			// tempo até a próxima atualização
 			long nextEvent = (long) Math.min(lastUpdate + deltaTimeUPS, lastFrame + deltaTimeUPS);
@@ -118,7 +120,7 @@ public final class GameLoop implements Runnable {
 			
 			// Se o valor for maior que 2ms 
 			// A thread "descansa" pelo tempo restante
-			if (timeRemaining >= 2000000 /* tempoParaDormir > 0 */) {
+			if (timeRemaining >= 2000000) {
 				try {
 					Thread.sleep(timeRemaining / 1000000 - 1);
 				}
@@ -128,7 +130,7 @@ public final class GameLoop implements Runnable {
 					e.printStackTrace();
 				}
 			}
-			
+			/*
 			// Verifica se pode imprimir o FPS e o UPS do jogo em Milissegundos
 			if (System.currentTimeMillis() - lastCheck >= 1000) {
 				
@@ -137,8 +139,15 @@ public final class GameLoop implements Runnable {
 				System.out.println("UPS: " + qtdUpdates);		// Imrpimimos a quantidade de Updates em 1 segundo
 				qtdFrames = 0;									// Zera a contagem de FPS para contar novamente
 				qtdUpdates = 0;									// Zera a contagem de UPS para contar novamente
-				
 			}
-		} 
+			*/
+		}
 	}
+	
+	private void update() {
+		
+		this.entityM.updateLogic();
+		
+	}
+	
 }

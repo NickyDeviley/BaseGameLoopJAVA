@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import Entities.Behaviors.Direction;
 import Util.Input.AssetInput;
 
 public abstract class Entity {
@@ -12,27 +13,20 @@ public abstract class Entity {
 // ATRIBUTOS
 	protected String nome;
 	protected int vida;
+	protected int speed;
+	protected Direction direction;
 	
 	protected int worldPosX;
 	protected int worldPosY;
 	
-	protected String nomeSprites;
-	
 // OBJETOS
-	protected List<BufferedImage> Sprites;
-	protected AssetInput assetInput;
 	
 	// Construtor
-	public Entity(String nome, AssetInput assetInput) {
+	public Entity(String nome) {
 		
 		// Atributos
 		this.nome = nome;
-		
-		// lista de Sprites
-		Sprites = new ArrayList<>();
-		
-		// AssetManager
-		this.assetInput = assetInput;
+		this.direction = Direction.DOWN;
 		
 	}
 	
@@ -52,16 +46,17 @@ public abstract class Entity {
 	public int getVida() { return vida; }
 	public void setVida(int vida) { this.vida = vida; }
 
+	public int getSpeed() { return speed; }
+	public void setSpeed(int speed) { this.speed = speed; }
+	
+	public Direction getDirection() { return this.direction; }
+	public void setDirection(Direction direction) { this.direction = direction; }
+	
 	public int getWorldPosX() { return worldPosX; }
 	public void setWorldPosX(int worldPosX) { this.worldPosX = worldPosX; }
 
 	public int getWorldPosY() { return worldPosY; }
 	public void setWorldPosY(int worldPosY) { this.worldPosY = worldPosY; }
-
-	public String getNomeSprites() { return nomeSprites; }
-	public void setNomeSprites(String nomeSprites) { this.nomeSprites = nomeSprites; }
-
-	public List<BufferedImage> getSprites() { return Sprites; }
-	public void setSprites(List<BufferedImage> sprites) { Sprites = sprites; }
+	
 	
 }

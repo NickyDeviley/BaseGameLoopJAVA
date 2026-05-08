@@ -9,23 +9,27 @@ import javax.swing.JPanel;
 
 import Principal.Config;
 import Principal.Managers.EntityManager;
+import Principal.Managers.WorldManager;
+import Util.Input.KeyboardInput;
 
 public class Panel extends JPanel {
 		
 // OBJETOS
 	private EntityManager entityM;
+	private WorldManager worldM;
 	
-	public Panel(EntityManager entityM) {
+	public Panel(EntityManager entityM, WorldManager worldM, KeyboardInput keyboardI) {
 		
 		// Referenciando o EntityManager
 		this.entityM = entityM;
+		this.worldM = worldM;
 		
 		// Gerando a janela
 		this.setScreenSize(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);	// Método que determina o tamanho da janela
 		this.setBackground(Color.BLACK);				// Método que pinta o fundo de preto
 		this.setFocusable(true);						// Método que torna a janela o "alvo" das entradas do jogador
 		this.setDoubleBuffered(true);					// Método que impede a janela de piscar
-		//this.addKeyListener(null);
+		this.addKeyListener(keyboardI);
 		
 	}
 	
@@ -38,7 +42,9 @@ public class Panel extends JPanel {
 		
 		/* CHAME OS MÉTODOS DE DESENHO ABAIXO DESTE COMENTARIO */
 		
+		this.worldM.drawWorld(g2);		// Desenhando o mundo
 		this.entityM.draw(g2);		// Desenhando as entidades
+		
 		
 		/* CHAME OS MÉTODOS DE DESENHO ACIMA DESTE COMENTARIO */
 		
