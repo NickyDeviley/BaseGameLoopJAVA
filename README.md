@@ -24,12 +24,17 @@ Atualmente o projeto está em fase de desenvolvimento, métodos e técnicas est�
 
 # Próximo Objetivo:
 
-O desenvolvimento e implementação do sistema de Tiles, onde o mapa será modelado de forma dinâmica a partir da leitura de arquivos de texto e renderizado através de uma SpriteSheet. Essa etapa utilizará conceitos de POO avançada, como especialização de classes de blocos, polimorfismo para renderização em camadas e Design Patterns para otimização de memória.
+O desenvolvimento e implementação do sistema de Tiles, onde o mapa será modelado de forma dinâmica a partir da leitura de arquivos de texto e renderizado através de uma SpriteSheet. Essa etapa utilizará conceitos de POO avançada, como especialização de classes de blocos, polimorfismo para renderização em camadas e Design Patterns para otimização de memória. Também será atualizado o sistema de movimentação do jogador e de reconhecimento de inputs do teclado pois, atualmente, ele se encontra exclusivo da classe Player, os inputs serão movidos para a classe GameLoop para que possam interagir com todo o sistema do jogo, de forma que os comandos possam ser mais abrangentes além de permitir que o usuário modifique os botões futuramente.
 
 
 # Objetivo Principal: 
 
 Além de servir como um laboratório prático para treinar minhas habilidades como programador, dominar engenharia de software aplicada a jogos e compreender a matemática por trás da física e renderização 2D, o objetivo final é conceber um jogo bidimensional completo em perspectiva top-down, fortemente inspirado nos clássicos do século passado (como os primeiros The Legend of Zelda e Dragon Quest). 
+
+
+# Diagrama de classe:
+
+<img width="2941" height="2065" alt="GameInJavaClassDiagram" src="https://github.com/user-attachments/assets/1d4d327c-ea58-4f7f-8e42-2b21b24fc0f8" />
 
 
 # Pré-requisitos: 
