@@ -14,10 +14,15 @@ Um RPG de ação focado em exploração de calabouços e combate tático minimal
 Aceitar missões -> Explorar o mapa e resolver puzzles -> Derrotar criaturas e chefes -> Coletar recompensas e atualizar atributos.
 
 - Foco do Jogo: 
-Progressão contínua e desafio mecânico através de quebra-cabeças integrados ao ambiente.Público-Alvo: Entusiastas de jogos retrô clássicos e estudantes de desenvolvimento de jogos interessados em mecânicas low-level (baixo nível).Estado Atual:Próximo 
+Progressão contínua e desafio mecânico através de quebra-cabeças integrados ao ambiente.Público-Alvo: Entusiastas de jogos retrô clássicos e estudantes de desenvolvimento de jogos interessados em mecânicas low-level (baixo nível).
 
 
-# Objetivo:
+# Estado Atual: 
+
+Atualmente o projeto está em fase de desenvolvimento, métodos e técnicas estão sendo testados e implementados para manter o projeto o mais compreensível e expandível possível. É entregue ao usuário uma experiência simples, uma janela é aberta na interface do usuário, o fundo é preto e há um retângulo Branco que pode ser movimentado utilizando inputs do teclado.
+
+
+# Próximo Objetivo:
 
 O desenvolvimento e implementação do sistema de Tiles, onde o mapa será modelado de forma dinâmica a partir da leitura de arquivos de texto e renderizado através de uma SpriteSheet. Essa etapa utilizará conceitos de POO avançada, como especialização de classes de blocos, polimorfismo para renderização em camadas e Design Patterns para otimização de memória.
 
