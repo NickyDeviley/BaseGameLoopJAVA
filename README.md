@@ -58,6 +58,71 @@ Utilize as teclas W, A, S, D para movimentar o retângulo branco pela janela do 
 - Java SE (Bibliotecas nativas/Oracle); 
 - Eclipse IDE (Ambiente de desenvolvimento)
 
+# Estrutura:
+
+src
+|- Entities
+|  |- Behaviors
+|  |  |- Atingivel.java
+|  |  |- Command.java
+|  |  |- Direction.java
+|  |  |- PlayerState.java
+|  |- Info
+|  |  |- Vazia*
+|  |- Player
+|  |  |- Commands
+|  |  |  |- Vazia*
+|  |  |
+|  |  |- States
+|  |  |  |- IdleState.java
+|  |  |  |- States.java
+|  |  |  |- WalkState.java
+|  |  |- Player.java
+|  |- Entity.java
+|- Principal
+|  |- Managers
+|  |  |- AssetManager.java
+|  |  |- EntityManager.java
+|  |  |- PhysicManager.java
+|  |  |- TileManager.java
+|  |  |- WorldManager.java
+|  |- Controller
+|  |  |- Vazia*
+|  |- Main.java
+|  |- GameLoop.java
+|  |- Config.java
+|- Screen
+|  |- Panel.java
+|  |- Screen.java
+|- Tiles
+|  |- Behaviors
+|  |  |- AnimatedRenderes.java
+|  |  |- Behaviors.java
+|  |  |- StaticRenderer.java
+|  |  |- TileRenderer.java
+|  |- Tile.java
+|- Util
+|  |- Input
+|  |  |- AssetInput.java
+|  |  |- KeyboardInput.java
+|  |  |- MouseInput.java
+|  |  |- WorldInput.java
+|  | UtilityTools.java
+  
+res
+|- Assets
+|  |- EntitiesAssets
+|  |  |- Player
+|  |  |- Slime
+|  |
+|  |- TilesAssets
+|  |  |- TileSet.png
+|  |  |- TilesInfo.txt
+| 
+|- Worlds
+|  |- Worldtest.txt
+
+
 # Licença:
 
 MIT License
