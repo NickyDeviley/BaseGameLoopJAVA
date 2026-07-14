@@ -31,6 +31,26 @@ O desenvolvimento e implementação do sistema de Tiles, onde o mapa será model
 
 Além de servir como um laboratório prático para treinar minhas habilidades como programador, dominar engenharia de software aplicada a jogos e compreender a matemática por trás da física e renderização 2D, o objetivo final é conceber um jogo bidimensional completo em perspectiva top-down, fortemente inspirado nos clássicos do século passado (como os primeiros The Legend of Zelda e Dragon Quest). 
 
+# Trilha de objetivos:
+
+✅ Game Loop (60 FPS, 120 UPS);
+
+✅ Abrir uma janela;
+
+✅ Renderizar um quadrado;
+
+✅ Adicionar movimento ao quadrado via input;
+
+❌ Carregar configurações de tiles via TXT;
+
+❌ Instanciar e renderizar blocos;
+
+❌ Carregar mapa via txt (fly-weight pattern);
+
+❌ Carregar Assets (PLACEHOLDER);
+
+❌ Primeira versão "jogável";
+
 
 # Diagrama de classe:
 
