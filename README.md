@@ -54,7 +54,7 @@ Além de servir como um laboratório prático para treinar minhas habilidades co
 
 # Diagrama de classe:
 
-<img width="2941" height="2065" alt="GameInJavaClassDiagram" src="https://github.com/user-attachments/assets/1d4d327c-ea58-4f7f-8e42-2b21b24fc0f8" />
+<img width="3071" height="2156" alt="GameInJavaClassDiagram" src="https://github.com/user-attachments/assets/695ed44c-032c-4a06-baa9-24852abc860e" />
 
 
 # Pré-requisitos: 
