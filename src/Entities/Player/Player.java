@@ -6,16 +6,20 @@ import java.util.List;
 
 import Entities.Entity;
 import Entities.Behaviors.Atingivel;
-import Entities.Behaviors.Command;
+import Entities.Behaviors.Direction;
 import Entities.Behaviors.PlayerState;
 import Entities.Player.States.IdleState;
 import Entities.Player.States.States;
+import Entities.Player.States.WalkState;
 import Principal.Config;
-import Util.Input.AssetInput;
+import Principal.Commands.Command;
 import Util.Input.KeyboardInput;
 
 public class Player extends Entity implements Atingivel {
-
+	/**
+		Classe que representa o jogador.
+	*/
+	
 	// Variáveis
 	private int screenPosX;
 	private int screenPosY;
@@ -47,8 +51,8 @@ public class Player extends Entity implements Atingivel {
 	}
 
 // COMPORTAMENTOS
-	public void update() {
-		List<Command> commands = this.keyboardI.getCommandForPressedKey();
+	public void update(List<Command> input) {
+		List<Command> commands = input;
 		
 		/// Delega o controle dos comandos para o estado atual
 		this.state.handleCommands(this, commands);
@@ -60,6 +64,7 @@ public class Player extends Entity implements Atingivel {
 		//System.out.println("State: " + this.state.getStateName());
 		//System.out.println("WorldPosX: " + this.worldPosX + " WorldPosY: " + this.worldPosY);
 		//System.out.println(this.direction);
+		
 	}
 	
 // MÉTODOS SOBRESCRITOS
@@ -77,6 +82,29 @@ public class Player extends Entity implements Atingivel {
 		
 	}
 
+	@Override
+	public void movement(Direction direction) {
+		
+		// Se o estado atual do jogador não é se mover
+		// o estado atual é atualizado.
+		if (!(this.getState() instanceof WalkState)) {
+			this.setState(WalkState.walkS);
+		}
+		
+		//player.setWorldPosY(player.getWorldPosY() + player.getSpeed());
+		//player.setScreenPosY(player.getScreenPosY() + player.getSpeed());
+		
+		//player.setWorldPosX(player.getWorldPosX() + (this.direction.x * player.getSpeed()));
+		//player.setWorldPosY(player.getWorldPosY() + (this.direction.y * player.getSpeed()));
+		
+		// Direciona a posição do jogador para o lado em que ele está se movimentando
+		// E então move ele naquela direção.
+		this.setDirection(direction);
+		this.setScreenPosX(this.getScreenPosX() + (direction.x * this.getSpeed()));
+		this.setScreenPosY(this.getScreenPosY() + (direction.y * this.getSpeed()));
+		
+		
+	}
 
 	
 // GETTERS & SETTERS

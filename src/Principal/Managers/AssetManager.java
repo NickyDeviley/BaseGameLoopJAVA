@@ -8,7 +8,7 @@ import java.util.Map;
 
 import Util.Input.AssetInput;
 import Entities.Behaviors.PlayerState;
-import Tiles.Tile;
+//import Tiles.Tile;
 
 public class AssetManager {
 	/**
@@ -25,7 +25,7 @@ public class AssetManager {
 
 // MAPS
 	// Jogador
-	private Map<PlayerState, List<BufferedImage>> playerAnimations = new HashMap<>();
+	private BufferedImage playerSpriteSheet;
 
 	// Inimigos
 	
@@ -34,24 +34,23 @@ public class AssetManager {
 	// Animais
 	
 	// Tiles
-	//private Map<> Tiles = new HashMap();
-	private List<BufferedImage> tiles = new ArrayList<>();
+	private BufferedImage tilesSheet;
 
 // Objetos
 	private AssetInput assetI;
 
 	// Construtor
 	public AssetManager() {
-		
 		this.assetI = new AssetInput();
-		this.tiles = this.assetI.carregarTiles();
-		//this.assetI.carregarSpritesEntities(null, null);
-		
+		tilesSheet = assetI.tileSpriteSheet();
 	}
+
+// COMPORTAMENTOS
 	
 	
 // GETTERS & SETTERS
-	public Map<PlayerState, List<BufferedImage>> getPlayerAnimations() { return this.playerAnimations; }
-	public List<BufferedImage> getTiles() { return this.tiles; }
+	public BufferedImage getPlayerSpriteSheet() { return playerSpriteSheet; }
+	public void setPlayerSpriteSheet(BufferedImage playerSpriteSheet) { this.playerSpriteSheet = playerSpriteSheet; }
+	public BufferedImage getTilesSheet() { return tilesSheet; }
 	
 }

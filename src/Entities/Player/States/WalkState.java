@@ -2,12 +2,16 @@ package Entities.Player.States;
 
 import java.util.List;
 
-import Entities.Behaviors.Command;
 import Entities.Behaviors.PlayerState;
 import Entities.Player.Player;
+import Principal.Commands.Command;
 
 public class WalkState implements PlayerState {
-
+	/**
+	 	Um dos estados que o jogador pode ficar.
+	 	Essa classe representa o estado -ANDANDO-
+	*/
+	
 	public static final WalkState walkS = new WalkState();
 	
 	private WalkState() {}

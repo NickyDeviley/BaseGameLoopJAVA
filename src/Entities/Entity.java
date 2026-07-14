@@ -6,9 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Entities.Behaviors.Direction;
-import Util.Input.AssetInput;
 
 public abstract class Entity {
+	/**
+		Classe abstrata que é herdada por todas as entidades do jogo.
+		As entidades são qualquer criatura, NPC e até o jogador, qualquer
+		coisa que possua uma barra de vida e possa se movimentar.
+	*/
+	
 	
 // ATRIBUTOS
 	protected String nome;
@@ -37,7 +42,7 @@ public abstract class Entity {
 	public abstract void drawSprites(Graphics2D g2);
 	
 // FUNCIONALIDADES
-	
+	public abstract void movement(Direction direction);
 
 // GETTERS & SETTERS
 	public String getNome() { return nome; }

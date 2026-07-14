@@ -1,8 +1,12 @@
 package Entities.Player.States;
 
 public enum States {
-
-	IDLE,
-	WALK
+	/**
+		Enumerador para ser o nome dos estados
+		que o jogador pode ficar.
+	*/
+	
+	IDLE,	// Parado
+	WALK	// Andando
 	
 }

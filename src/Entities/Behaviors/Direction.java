@@ -1,6 +1,11 @@
 package Entities.Behaviors;
 
 public enum Direction {
+	/**
+		Enumerador que identifica para onde o jogador
+		está se movimentando para ajustar a animação.
+	*/
+	
 	
 	UP(0, -1),
 	DOWN(0, 1),
