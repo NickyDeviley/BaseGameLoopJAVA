@@ -41,11 +41,13 @@ Além de servir como um laboratório prático para treinar minhas habilidades co
 
 ✅ Adicionar movimento ao quadrado via input;
 
+✅ Sistema de Câmera
+
 ❌ Carregar configurações de tiles via TXT;
 
-❌ Instanciar e renderizar blocos;
+✅ Instanciar e renderizar blocos;
 
-❌ Carregar mapa via txt (fly-weight pattern);
+✅ Carregar mapa via txt (fly-weight pattern);
 
 ❌ Carregar Assets (PLACEHOLDER);
 
