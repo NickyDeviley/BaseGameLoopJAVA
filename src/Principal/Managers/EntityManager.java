@@ -31,7 +31,7 @@ public class EntityManager {
 		this.screenWidth = Config.SCREEN_WIDTH;
 		this.screenHeight = Config.SCREEN_HEIGHT;
 		
-		this.Jogador = new Player(Config.nomeJogo, this.screenWidth, this.screenHeight, keyboardI);
+		this.Jogador = new Player(Config.nomeJogo, this.screenWidth, this.screenHeight);
 		
 	}
 	

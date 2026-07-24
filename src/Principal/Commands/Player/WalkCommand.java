@@ -9,6 +9,11 @@ import Principal.Commands.Command;
 
 public class WalkCommand implements Command {
 	/**
+	 	WalkCommand permite que o jogador se mova, mas
+	 	apenas indica a direção para onde ele vai se
+	 	mover, o método -movement- se encarrega de
+	 	movimentar o jogador.
+	 	
 	 	Classe que permite a movimentação do jogador,
 	 	ela implementa a interface -Command- que é
 	 	implementada por todos os comandos que o jogador
@@ -26,6 +31,7 @@ public class WalkCommand implements Command {
 	@Override
 	public void execute(Player player) {
 		
+		//player.setState(WalkState.walkS);
 		player.movement(this.direction);
 		
 	}

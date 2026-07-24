@@ -3,8 +3,11 @@ package Util;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-public class UtilityTools {
-
+public final class RedimensionTool {
+	/**
+		Classe que redimensiona as SpriteSheets
+	*/
+	
 	public BufferedImage scaleImage(BufferedImage imageInput, int width, int height) {
 		
 		BufferedImage scaledImage = new BufferedImage(width, height, imageInput.getType());

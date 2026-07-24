@@ -40,9 +40,14 @@ public class AssetManager {
 	private AssetInput assetI;
 
 	// Construtor
-	public AssetManager() {
-		this.assetI = new AssetInput();
-		tilesSheet = assetI.tileSpriteSheet();
+	public AssetManager(AssetInput assetI) {
+		
+		// Carregando a spritesheet do jogador
+		
+		
+		// Carregando os spritesheet do primeiro mapa
+		this.assetI = assetI;
+		//tilesSheet = assetI.tileSpriteSheet();
 	}
 
 // COMPORTAMENTOS
@@ -50,7 +55,7 @@ public class AssetManager {
 	
 // GETTERS & SETTERS
 	public BufferedImage getPlayerSpriteSheet() { return playerSpriteSheet; }
-	public void setPlayerSpriteSheet(BufferedImage playerSpriteSheet) { this.playerSpriteSheet = playerSpriteSheet; }
+	//public void setPlayerSpriteSheet(BufferedImage playerSpriteSheet) { this.playerSpriteSheet = playerSpriteSheet; }
 	public BufferedImage getTilesSheet() { return tilesSheet; }
 	
 }

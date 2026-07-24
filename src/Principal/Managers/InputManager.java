@@ -10,6 +10,7 @@ import Entities.Behaviors.Direction;
 import Entities.Player.Player;
 
 import Principal.Commands.Command;
+import Principal.Commands.Player.RunCommand;
 import Principal.Commands.Player.WalkCommand;
 import Util.Input.KeyboardInput;
 
@@ -47,6 +48,7 @@ public class InputManager {
 				keyBindings.put(KeyEvent.VK_D, new WalkCommand(Direction.RIGHT));
 				
 			// RUN
+				keyBindings.put(KeyEvent.VK_SHIFT, new RunCommand(true));
 			
 			// ATTACK
 				

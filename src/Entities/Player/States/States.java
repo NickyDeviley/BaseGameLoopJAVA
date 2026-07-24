@@ -7,6 +7,7 @@ public enum States {
 	*/
 	
 	IDLE,	// Parado
-	WALK	// Andando
+	WALK,	// Andando
+	RUN		// Correndo
 	
 }

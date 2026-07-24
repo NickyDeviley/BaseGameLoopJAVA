@@ -6,15 +6,15 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import Principal.Config;
-import Util.UtilityTools;
+import Util.RedimensionTool;
 
 public class AssetInput {
 
-	UtilityTools utilityT;
+	RedimensionTool utilityT;
 	
 	public AssetInput() {
 		
-		utilityT = new UtilityTools();
+		utilityT = new RedimensionTool();
 		
 	}
 	
@@ -24,15 +24,15 @@ public class AssetInput {
 		
 		try {
 			
+			// Recebe a spriteSheet com todos os Tiles de um mapa específico
 			BufferedImage originalTileSheet = ImageIO.read(getClass().getResourceAsStream(Config.TILES_ASSET_PATH + "TileSet.png"));
 			
+			// Redimensiona a imagem para ela ficar na escala correta
 			tileSheet = utilityT.scaleImage(originalTileSheet, Config.SPRITESHEET_WIDTH_SIZE, Config.SPRITESHEET_HEIGHT_SIZE);
 			
 		}
 		catch (IOException e) {
-			
 			e.printStackTrace();
-			
 		}
 		
 		return tileSheet;

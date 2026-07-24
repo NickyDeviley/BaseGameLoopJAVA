@@ -18,7 +18,7 @@ public abstract class Entity {
 // ATRIBUTOS
 	protected String nome;
 	protected int vida;
-	protected int speed;
+	protected int actualSpeed;
 	protected Direction direction;
 	
 	protected int worldPosX;
@@ -51,8 +51,8 @@ public abstract class Entity {
 	public int getVida() { return vida; }
 	public void setVida(int vida) { this.vida = vida; }
 
-	public int getSpeed() { return speed; }
-	public void setSpeed(int speed) { this.speed = speed; }
+	public int getActualSpeed() { return this.actualSpeed; }
+	public void setActualSpeed(int newSpeed) { this.actualSpeed = newSpeed; }
 	
 	public Direction getDirection() { return this.direction; }
 	public void setDirection(Direction direction) { this.direction = direction; }

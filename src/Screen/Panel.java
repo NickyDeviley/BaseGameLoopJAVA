@@ -2,6 +2,7 @@ package Screen;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -18,6 +19,8 @@ public class Panel extends JPanel {
 	private EntityManager entityM;
 	private WorldManager worldM;
 	
+	//private Font fonteDebug;
+	
 	public Panel(EntityManager entityM, WorldManager worldM, KeyboardInput keyboardI) {
 		
 		// Referenciando o EntityManager
@@ -31,6 +34,9 @@ public class Panel extends JPanel {
 		this.setDoubleBuffered(true);					// Método que impede a janela de piscar
 		this.addKeyListener(keyboardI);
 		
+		// Objetos e Variáveis
+		//this.fonteDebug = new Font("Times New Roman", Font.PLAIN, 30);	// Fonte, Tipo de fonte (bold, italic), tamanho
+		
 	}
 	
 	// Método que une todos os desenhos do jogo
@@ -42,11 +48,19 @@ public class Panel extends JPanel {
 		
 		/* CHAME OS MÉTODOS DE DESENHO ABAIXO DESTE COMENTARIO */
 		
-		this.worldM.drawWorld(g2);		// Desenhando o mundo
+		this.worldM.draw(g2);		// Desenhando o mundo
 		this.entityM.draw(g2);		// Desenhando as entidades
 		
 		
 		/* CHAME OS MÉTODOS DE DESENHO ACIMA DESTE COMENTARIO */
+		
+		// DEBUG
+		
+		//g2.setFont(fonteDebug);
+		//g2.drawString("PosX Player: " + this.entityM.getPlayer().getWorldPosX(), 50, 65);
+		//g2.drawString("PosY Player: " + this.entityM.getPlayer().getWorldPosY(), 50, 115);
+		
+		// DEBUG
 		
 		g2.dispose();
 	}

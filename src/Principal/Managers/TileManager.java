@@ -1,9 +1,12 @@
 package Principal.Managers;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import Tiles.Tile;
+import Tiles.TileBehaviors.TileBehavior;
+import Util.Input.AssetInput;
+import Util.Input.TileInput;
 
 public class TileManager {
 	/**
@@ -11,23 +14,45 @@ public class TileManager {
 		que serão utilizados no jogo.
 	*/
 	
-	private static Map<Integer, Tile> tiles = new HashMap<>();
+	// List que armazena os tiles
+	private List<Tile> tilesFromActualMap;
+	private List<Tile> tilesFromNextMap;
 	
-	public static void adicionarTile(Tile tile) {
+	// Dependências
+	private AssetInput assetI;
+	private TileInput tileI;
+	
+	// Construtor
+	public TileManager(AssetInput assetI, TileInput tileI) {
 		
-		tiles.put(tile.getID(), tile);
-	
+		/*
+			Vai carregar os tiles do map1
+			vai armazenar na lista e chamar o worldManager para renderizar
+		*/
+		
+		// Injeção de dependências
+		this.assetI = assetI;
+		this.tileI = tileI;
+		
+		// Iniciando as listas
+		tilesFromActualMap = new ArrayList<>();		// Armazena os tiles do mapa atual
+		tilesFromNextMap = new ArrayList<>();		// Armazena os tiles do próximo mapa
 	}
 	
-	public static Tile getTile(int ID) {
+	private void creatingTiles() {
 		
-		Tile tile = tiles.get(ID);
-		if (tile == null) {
-			throw new IllegalArgumentException("ID não Existe!");
-		}
-		return tile;
+		// Usa um laço for para instanciar vários blocos
+		// Ele junta as informações de cada Tile do TileInput
+		// com as imagens para formar o Tile que será utilizado
 		
 	}
 	
+	public TileBehavior getTileBehavior() {
+		
+		
+		
+		return null;
+		
+	}
 	
 }

@@ -12,9 +12,9 @@ public class Config {
 	public static final String WORLDS_PATH = "/Worlds/";
 	
 	// Tamanho dos sprites
-	public static final int ORIGINAL_TILE_SIZE = 16;
-	public static final int SCALE = 4;
-	public static final int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE;
+	public static final int ORIGINAL_TILE_SIZE = 16;				// 16
+	public static final int SCALE = 4;								// 4
+	public static final int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE;	// 64
 	
 	// Tamanho da SpriteSheet
 	public static final int SPRITESHEET_WIDTH = 112;

@@ -10,7 +10,7 @@ import Util.Input.AssetInput;
 import Util.Input.KeyboardInput;
 import Util.Input.WorldInput;
 
-public final class GameLoop implements Runnable {
+public final class GameLoop {
 
 // CONSTANTES
 	private final byte FPS = 60;
@@ -47,10 +47,10 @@ public final class GameLoop implements Runnable {
 		this.worldI = new WorldInput();
 		
 		// Instanciando os objetos Manager
-		this.assetM = new AssetManager();
+		this.assetM = new AssetManager(this.assetI);
 		this.entityM = new EntityManager(this.keyboardI);
 		this.inputM = new InputManager(this.keyboardI, this.entityM.getPlayer());
-		this.worldM = new WorldManager(this.worldI);
+		this.worldM = new WorldManager(this.worldI, entityM.getPlayer());
 		
 		// Criando os objetos janela
 		this.gamePainel = new Panel(this.entityM, this.worldM, this.keyboardI);
@@ -62,17 +62,19 @@ public final class GameLoop implements Runnable {
 
 	// Método tudo declarado dentro deste método
 	// roda na thread
+	/*
 	@Override
 	public void run() {
 		
 		this.runningGameLoop();
 		
 	}
+	*/
 	
 	// Método que inicia a thread
 	private void startGameLoop() {
 		
-		this.gameThread = new Thread(this);	// Instanciando a thread
+		this.gameThread = new Thread(() -> runningGameLoop());	// Instanciando a thread usando LAMBDA
 		this.running = true;				// Ativando variável que mantém o gameloop
 		this.gameThread.start();			// Iniciando a thread
 	}

@@ -9,6 +9,7 @@ import Entities.Behaviors.Atingivel;
 import Entities.Behaviors.Direction;
 import Entities.Behaviors.PlayerState;
 import Entities.Player.States.IdleState;
+import Entities.Player.States.RunState;
 import Entities.Player.States.States;
 import Entities.Player.States.WalkState;
 import Principal.Config;
@@ -23,20 +24,27 @@ public class Player extends Entity implements Atingivel {
 	// Variáveis
 	private int screenPosX;
 	private int screenPosY;
+	private int walkingS;
+	private int runningS;
+	
+	private boolean isRunning;
 	
 	// Objetos
-	private KeyboardInput keyboardI;
 	private PlayerState state;
 	
 	// Construtor
-	public Player(String nome, int screenWidth, int screenHeight, KeyboardInput keyboardI) {
+	public Player(String nome, int screenWidth, int screenHeight) {
 		super(nome);
 		
 		// Variáveis
-		this.speed = 1;
+		this.walkingS = 2;
+		this.runningS = 5;
 		
-		// Referênciando os objetos
-		this.keyboardI = keyboardI;
+		this.isRunning = false;
+		
+		this.actualSpeed = walkingS;
+		
+
 		
 		// Calculando a posição do jogador na tela
 		this.screenPosX = (screenWidth / 2) - (Config.TILE_SIZE / 2);
@@ -52,13 +60,12 @@ public class Player extends Entity implements Atingivel {
 
 // COMPORTAMENTOS
 	public void update(List<Command> input) {
-		List<Command> commands = input;
+		this.setIsRunning(false);
 		
-		/// Delega o controle dos comandos para o estado atual
-		this.state.handleCommands(this, commands);
+		List<Command> commands = input;				// Recebe os inputs
 		
-		// Atualiza a lógica interna do estado
-		this.state.update(this);
+		this.state.handleCommands(this, commands);	// Delega o controle dos comandos para o estado atual
+		//this.state.update(this);					// Atualiza a lógica interna do estado
 		
 	// DEBUG
 		//System.out.println("State: " + this.state.getStateName());
@@ -85,24 +92,15 @@ public class Player extends Entity implements Atingivel {
 	@Override
 	public void movement(Direction direction) {
 		
-		// Se o estado atual do jogador não é se mover
-		// o estado atual é atualizado.
-		if (!(this.getState() instanceof WalkState)) {
-			this.setState(WalkState.walkS);
-		}
+		// Movimentando o jogador pelo mundo
+		this.setWorldPosX(this.getWorldPosX() + (direction.x * this.getActualSpeed()));
+		this.setWorldPosY(this.getWorldPosY() + (direction.y * this.getActualSpeed()));
 		
-		//player.setWorldPosY(player.getWorldPosY() + player.getSpeed());
-		//player.setScreenPosY(player.getScreenPosY() + player.getSpeed());
+		// Movimentando o jogador pela tela
+		//this.setScreenPosX(this.getScreenPosX() + (direction.x * this.getSpeed()));
+		//this.setScreenPosY(this.getScreenPosY() + (direction.y * this.getSpeed()));
 		
-		//player.setWorldPosX(player.getWorldPosX() + (this.direction.x * player.getSpeed()));
-		//player.setWorldPosY(player.getWorldPosY() + (this.direction.y * player.getSpeed()));
-		
-		// Direciona a posição do jogador para o lado em que ele está se movimentando
-		// E então move ele naquela direção.
 		this.setDirection(direction);
-		this.setScreenPosX(this.getScreenPosX() + (direction.x * this.getSpeed()));
-		this.setScreenPosY(this.getScreenPosY() + (direction.y * this.getSpeed()));
-		
 		
 	}
 
@@ -112,7 +110,13 @@ public class Player extends Entity implements Atingivel {
 	public void setState(PlayerState state) { this.state = state; }
 	
 	public States getStateName() { return this.state.getStateName(); }
-
+	
+	public int getWalkingSpeed() { return this.walkingS; }
+	public int getRunningSpeed() { return this.runningS; }
+	
+	public boolean getIsRunning() { return this.isRunning; }
+	public void setIsRunning(boolean isRunning) { this.isRunning = isRunning; }
+	
 	public int getScreenPosX() { return screenPosX; }
 	public void setScreenPosX(int screenPosX) { this.screenPosX = screenPosX; }
 

@@ -5,6 +5,7 @@ import java.util.List;
 import Entities.Behaviors.PlayerState;
 import Entities.Player.Player;
 import Principal.Commands.Command;
+import Principal.Commands.Player.WalkCommand;
 
 public class WalkState implements PlayerState {
 	/**
@@ -19,6 +20,8 @@ public class WalkState implements PlayerState {
 	@Override
 	public void handleCommands(Player player, List<Command> commands) {
 		
+		player.setActualSpeed(player.getWalkingSpeed());
+		
 		for (Command command : commands) {
 			command.execute(player);
 		}
@@ -26,7 +29,9 @@ public class WalkState implements PlayerState {
 		if (commands.isEmpty()) {
 			player.setState(IdleState.idleS);
 		}
-		
+		else if (player.getIsRunning()) {
+			player.setState(RunState.runS);
+		}
 	}
 
 	@Override

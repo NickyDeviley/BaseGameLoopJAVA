@@ -23,6 +23,15 @@ public class IdleState implements PlayerState {
 			command.execute(player);
 		}
 		
+		if (!commands.isEmpty()) {
+			if (player.getIsRunning()) {
+				player.setState(RunState.runS);
+			}
+			else {
+				player.setState(WalkState.walkS);
+			}
+		}
+		
 	}
 
 	@Override
